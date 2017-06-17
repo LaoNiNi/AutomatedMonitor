@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 # _*_ coding:utf-8 _*_
 __author__ = "BIGNI"
 __date__ = "2017/4/30 17:15"
@@ -6,7 +6,7 @@ __date__ = "2017/4/30 17:15"
 import subprocess
 
 def monitor(frist_invoke=1):
-    shell_command = 'sar 1 3| grep "^平均时间:"'
+    shell_command = 'sar 1 3| grep "^Average:"'
     ret_status = subprocess.call(shell_command,shell=True)
     result = subprocess.Popen(shell_command,shell=True,stdout=subprocess.PIPE).stdout.read()
     result = result.decode("utf8")
@@ -23,9 +23,11 @@ def monitor(frist_invoke=1):
             "system":system,
             "iowait":iowait,
             "steal":steal,
-            "idle":idle
+            "idle":idle,
+            "status":ret_status
         }
+    return value_dic
 
 
-if __name__ == '__main__':
-    print(monitor())
+# if __name__ == '__main__':
+#     print(type(monitor()),monitor())

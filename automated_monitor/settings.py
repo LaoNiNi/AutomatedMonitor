@@ -32,7 +32,7 @@ SECRET_KEY = 'j1#=*aw#f*m(yqx4lgdijbysxx-4$melq*w%&4pqt(gy95n35p'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -58,6 +58,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    # 'django.middleware.csrf.CsrfResponseMiddleware',
 ]
 
 ROOT_URLCONF = 'automated_monitor.urls'
@@ -157,3 +158,22 @@ STATICFILES_DIRS = [
 #配置资源文件的上传路径。比如图片
 MEDIA_ROOT = os.path.join(BASE_DIR,'media')
 MEDIA_URL = '/media/'
+
+
+
+#redis配置信息
+REDIS_CONN = {
+    # 'HOST':'192.168.1.105',
+    'HOST':'127.0.0.1',
+    'PORT':6379,
+    'DB':1,
+    'PASSWD':''
+}
+
+#监控时间点,第一个元素表示间隔时间，第二个表示
+STATUS_DATA_OPTIMIZATION = {
+    'lastest':[0,600],
+    '10mins':[600,600],#4天
+    '30mins':[1800,600],#14天
+    '60mins':[3600,600],#25天
+}

@@ -30,9 +30,10 @@ class ClientHandler(View):
             print(">>>>",template_list)
             #获取主机组obj
 
-            host_group_obj = host_obj_id.host_groups.select_related()
+            # host_group_obj = host_obj_id.host_groups.select_related()
             #把主机组下的目标添加进来
-            template_list.extend([template for template in host_group_obj])
+            for host_group in host_obj_id.host_groups.select_related():
+                template_list.extend(host_group.templates.select_related())
             print("--->",template_list)
             #获取服务列表
             for template in template_list:

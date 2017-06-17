@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 # _*_ coding:utf-8 _*_
 __author__ = "BIGNI"
 __date__ = "2017/4/15 23:48"
@@ -17,7 +17,7 @@ class main_command(object):
     #根据命令调用方法
     def entry_command(self):
         print("##############################################")
-        if hasattr(self.sys_argv[1]):
+        if hasattr(self,self.sys_argv[1]):
             func = getattr(self,self.sys_argv[1])
             return func()
         else:
